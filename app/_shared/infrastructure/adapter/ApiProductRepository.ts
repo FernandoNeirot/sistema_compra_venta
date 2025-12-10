@@ -1,4 +1,4 @@
-import { ProductRepository } from '@/app/(home)/domain/ports/ProductRepository'; 
+import { ProductRepository } from '@/app/_shared/domain/ports/ProductRepository'; 
 import { Product } from '../../domain/models/Product';
 
 const cache = new Map<string, { data: any, timestamp: number }>();
