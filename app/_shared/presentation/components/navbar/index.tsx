@@ -23,7 +23,7 @@ const Navbar = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: theme.palette.secondary.dark,
         height: 64,
         boxShadow: theme.shadows[14],
         px: 2
@@ -68,7 +68,8 @@ const Navbar = () => {
             sx={{
               marginLeft: 2,
               backgroundColor: theme.palette.background.paper,
-              minWidth: 500,
+              width: '100%',
+              maxWidth: 600,
               borderRadius: 1,
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {

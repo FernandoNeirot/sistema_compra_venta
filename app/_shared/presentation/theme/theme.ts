@@ -11,7 +11,7 @@ const colors = {
   secondary: {
     main: '#10b981', // Verde - éxito y oportunidades
     light: '#34d399',
-    dark: '#059669',
+    dark: '#288769ff',
     contrastText: '#ffffff',
   },
   error: {

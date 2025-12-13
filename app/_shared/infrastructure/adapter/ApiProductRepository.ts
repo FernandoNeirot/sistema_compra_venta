@@ -46,8 +46,8 @@ export class ApiProductRepository implements ProductRepository {
     
     try {
       const res = await fetch(`${this.baseUrl}`, {
-        next: { revalidate: 120 }, // Cachear por 120 segundos (2 minutos) en producción
-        cache: 'force-cache' // Intentar usar cache del navegador/CDN
+        next: { revalidate: 120 },
+        cache: 'default'
       });
       
       if (!res.ok) {
