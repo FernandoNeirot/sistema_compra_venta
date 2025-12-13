@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import Navbar from "./_shared/presentation/components/navbar";
 import ThemeRegistry from "@/app/_shared/presentation/components/ThemeRegistry";
@@ -31,7 +32,9 @@ export default function RootLayout({
       >
         <ThemeRegistry>
           <div className="mx-auto w-full">
-            <Navbar />
+            <Suspense fallback={<div style={{ height: 64 }} />}>
+              <Navbar />
+            </Suspense>
             {children}
           </div>
         </ThemeRegistry>
