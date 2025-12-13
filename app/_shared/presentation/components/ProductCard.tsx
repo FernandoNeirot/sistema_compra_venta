@@ -8,15 +8,19 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="border border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition">
-      {product.image && (
-      <Image
-        src={product.image}
-        alt={product.title}
-        width={300}
-        height={192}
-        className="w-full h-48 object-contain rounded-md mb-4 bg-white"
-      />
-      )}
+      <div className="w-full flex justify-center items-center">
+
+        {product.image && (
+          <Image
+            src={product.image}
+            alt={product.title}
+            width={300}
+            height={192}
+            className="w-full h-48 object-contain rounded-md mb-4 bg-white"
+            style={{ width: '300px', height: '192px' }}
+          />
+        )}
+      </div>
       <h3 className="text-xl font-semibold text-gray-800 h-14 line-clamp-2">{product.title}</h3>
       <p className="text-sm text-gray-500 mb-2 capitalize">{product.category}</p>
       <p className="text-gray-600 mt-2 line-clamp-3 min-h-[4.5rem]">{product.description}</p>
