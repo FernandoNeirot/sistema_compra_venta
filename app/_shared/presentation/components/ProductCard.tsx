@@ -18,6 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             height={192}
             className="w-full h-48 object-contain rounded-md mb-4 bg-white"
             style={{ width: '300px', height: '192px' }}
+            loading="eager"
           />
         )}
       </div>
@@ -31,7 +32,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       </div>
       {/* Botón que podría llamar a una función de la Capa de Aplicación si fuera necesario */}
       <button className="mt-4 bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-700 transition w-full">
-        Contactar al vendedor
+        Ver
       </button>
     </div>
   );

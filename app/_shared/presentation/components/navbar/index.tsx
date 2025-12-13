@@ -36,7 +36,8 @@ const Navbar = () => {
             alt="Logo"
             width={80}
             height={40}
-            style={{ cursor: 'pointer' }}
+            priority
+            style={{ cursor: 'pointer', width: 80, height: 40 }}
           />
         </Link>
         <Box sx={{ flexGrow: 1 }}>

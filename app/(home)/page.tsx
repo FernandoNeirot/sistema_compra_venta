@@ -3,7 +3,7 @@ import { Product } from "../_shared/domain/models/Product";
 import { ApiProductRepository } from "../_shared/infrastructure/adapter/ApiProductRepository";
 import WrapperMaxWidth1200 from "../_shared/presentation/components/Wrappers/MaxWidth1200";
 import ProductList from "../_shared/presentation/components/ProductList";
-import Carousel from "../_shared/presentation/carousel";
+import Carousel from "../_shared/presentation/components/carousel";
 
 export default async function ProductsPage() {
   const repository = new ApiProductRepository();
@@ -21,6 +21,10 @@ export default async function ProductsPage() {
         type="full"         
         heightLess={64}
       />
+      <WrapperMaxWidth1200>
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 mt-10">Categorias</h1>
+        <ProductList products={products} />
+      </WrapperMaxWidth1200>
       <WrapperMaxWidth1200>
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 mt-10">Productos</h1>
         <ProductList products={products} />
