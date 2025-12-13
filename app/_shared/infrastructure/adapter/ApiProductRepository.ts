@@ -43,30 +43,47 @@ export class ApiProductRepository implements ProductRepository {
     }
     
     console.log('🔄 Haciendo FETCH (cache expirado o no existe)');
-    const res = await fetch(`${this.baseUrl}`, {
-      next: { revalidate: 120 } // Cachear por 120 segundos (2 minutos) en producción
-    });
     
-    if (!res.ok) {
-      throw new Error("Failed to fetch products");
-    }
+    try {
+      const res = await fetch(`${this.baseUrl}`, {
+        next: { revalidate: 120 }, // Cachear por 120 segundos (2 minutos) en producción
+        cache: 'force-cache' // Intentar usar cache del navegador/CDN
+      });
+      
+      if (!res.ok) {
+        console.error('❌ Error en fetch:', res.status, res.statusText);
+        throw new Error("Failed to fetch products");
+      }
 
-    const data = await res.json();
-    
-    const products = data.map((item: any) => ({
-        id: item.id,
-        title: item.title,
-        price: item.price,
-        description: item.description,
-        category: item.category,
-        image: item.image,
-        rating: item.rating,
-    } as Product));
-    
-    // Guardar en cache
-    cache.set(cacheKey, { data: products, timestamp: now });
-    console.log('💾 Datos guardados en cache por 2 minutos');
-    
-    return products;
+      const data = await res.json();
+      
+      const products = data.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          price: item.price,
+          description: item.description,
+          category: item.category,
+          image: item.image,
+          rating: item.rating,
+      } as Product));
+      
+      // Guardar en cache
+      cache.set(cacheKey, { data: products, timestamp: now });
+      console.log('💾 Datos guardados en cache por 2 minutos');
+      
+      return products;
+    } catch (error) {
+      console.error('❌ Error al obtener productos:', error);
+      
+      // Si tenemos datos en cache aunque estén expirados, devolverlos
+      if (cache.has(cacheKey)) {
+        console.log('⚠️ Usando cache expirado como fallback');
+        return cache.get(cacheKey)!.data;
+      }
+      
+      // Si no hay cache, devolver array vacío en lugar de fallar
+      console.log('⚠️ Sin cache disponible, devolviendo array vacío');
+      return [];
+    }
   }
 }

@@ -5,6 +5,10 @@ import WrapperMaxWidth1200 from "../_shared/presentation/components/Wrappers/Max
 import ProductList from "../_shared/presentation/components/ProductList";
 import Carousel from "../_shared/presentation/components/carousel";
 
+// Forzar renderizado dinámico
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function ProductsPage() {
   const repository = new ApiProductRepository();
   const getProductsUseCase = new GetProductsUseCase(repository);
